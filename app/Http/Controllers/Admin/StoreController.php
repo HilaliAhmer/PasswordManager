@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Store;
 
 class StoreController extends Controller
 {
@@ -14,7 +15,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('admin.store.list');
+        $passwordStore=Store::paginate(10);
+        return view('admin.store.list',compact('passwordStore'));
     }
 
     /**
@@ -35,7 +37,6 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
