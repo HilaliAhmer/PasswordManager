@@ -45,7 +45,7 @@
                             Admin İşlemleri
                         </div>
 
-                        <x-jet-dropdown-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-dropdown-link href="{{ route('store.index') }}">
                             Bilgi İşlem
                         </x-jet-dropdown-link>
                         @if (Auth()->User()->type=='admin')

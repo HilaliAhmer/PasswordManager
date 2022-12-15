@@ -15,6 +15,7 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['it', 'system'])->default('it');
             $table->string('title');
             $table->string('username');
             $table->string('password');

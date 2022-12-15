@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\StoreController;
+use App\Http\Controllers\UserStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Route::middleware(['auth', 'verified'])->get('/panel', function () {
 
 Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
     Route::resource('stores', StoreController::class);
+});
+Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'user'],function () {
+    Route::resource('store', UserStoreController::class);
 });
