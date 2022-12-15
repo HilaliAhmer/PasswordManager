@@ -45,11 +45,11 @@
                             Admin İşlemleri
                         </div>
 
-                        <x-jet-dropdown-link href="{{ route('stores.index') }}">
+                        <x-jet-dropdown-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                             Bilgi İşlem
                         </x-jet-dropdown-link>
                         @if (Auth()->User()->type=='admin')
-                        <x-jet-dropdown-link href="#">
+                        <x-jet-dropdown-link href="{{ route('stores.index') }}">
                             Sistem ve Ağ
                         </x-jet-dropdown-link>
                         @endif
