@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title', $expection->getMessage())
+@section('title', __('Too Many Requests'))
 @section('code', '429')
-@section('message', $expection->getMessage())
+@section('message', __('Too Many Requests'))

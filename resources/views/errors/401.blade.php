@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title',$expection->getMessage())
+@section('title', __('Unauthorized'))
 @section('code', '401')
-@section('message', $expection->getMessage())
+@section('message', __('Unauthorized'))

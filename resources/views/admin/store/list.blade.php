@@ -26,8 +26,9 @@
                                 <td><strong>{{ $password->username }}</strong></td>
                                 <td>
                                     <div class="input-group">
-                                        <input id="{{ $password->id }}" type="password" class="form-control form-control-sm" value="{{ $password->password }}"
-                                        disabled readonly>
+                                        <input id="{{ $password->id }}" type="password"
+                                            class="form-control form-control-sm" value="{{ $password->password }}"
+                                            disabled readonly>
                                         <i class="input-group-text pt-7 fas fa-eye"></i>
                                     </div>
                                 </td>

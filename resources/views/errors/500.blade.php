@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title', $expection->getMessage())
+@section('title', __('Server Error'))
 @section('code', '500')
-@section('message', $expection->getMessage())
+@section('message', __('Server Error'))
