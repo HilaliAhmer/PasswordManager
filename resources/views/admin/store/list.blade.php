@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">Listele</x-slot>
+    <x-slot name="header">System ve Newtork Şifreleri</x-slot>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
-                <a href="{{ route('stores.create') }}" class="btn btn-outline-secondary "><i
+                <a href="{{ route('password.create') }}" class="btn btn-dark "><i
                         class="fa-regular fa-square-plus"></i> Yeni Şifre</a>
             </h5>
             <div class="table-responsive-md">
@@ -22,7 +22,7 @@
                     <tbody>
                         @foreach ($passwordStore as $password)
                             <tr>
-                                <td>{{ Str::limit($password->title, 20) }}</td>
+                                <td>{{ Str::limit($password->title, config('app.text_limit')) }}</td>
                                 <td><strong>{{ $password->username }}</strong></td>
                                 <td>
                                     <div class="input-group">
@@ -33,9 +33,9 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{ $password->url }}">{{ Str::limit($password->url, 20, '...') }}</a>
+                                    <a href="{{ $password->url }}">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
                                 </td>
-                                <td>{{ Str::limit($password->description, 20, '...') }}</td>
+                                <td>{{ Str::limit($password->description, config('app.text_limit'), '...') }}</td>
                                 <td>
                                     <a href="{{ route('stores.edit', $password->id) }}"
                                         class="btn btn-sm btn-primariy"><i class="fa fa-edit"></i></a>

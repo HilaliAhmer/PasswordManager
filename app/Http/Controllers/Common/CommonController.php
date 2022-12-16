@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Store;
+Use App\Models\PasswordType;
+Use App\Models\Store;
+Use App\Http\Requests\CommonPasswordCreateRequest;
 
-class UserStoreController extends Controller
+class CommonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,7 @@ class UserStoreController extends Controller
      */
     public function index()
     {
-        $passwordUserStore=Store::where('type','it')->paginate(10);
-        return view('user.store.list',compact('passwordUserStore'));
+        //
     }
 
     /**
@@ -26,7 +27,8 @@ class UserStoreController extends Controller
      */
     public function create()
     {
-        //
+        $passwordType=PasswordType::get();
+        return view('common.store.create',compact('passwordType'));
     }
 
     /**
@@ -35,9 +37,19 @@ class UserStoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommonPasswordCreateRequest $request)
     {
-        //
+        $post_type=$request->type_id;
+        $post_title=$request->title;
+        Store::create($request->post());
+        switch ($post_type) {
+            case '1':
+                return redirect()->route('store.index')->withSuccess($post_title.' başarı ile eklendi.');
+            case '2':
+                return redirect()->route('stores.index')->withSuccess($post_title.' başarı ile eklendi.');
+                break;
+        }
+
     }
 
     /**

@@ -42,12 +42,13 @@
                     <x-slot name="content">
                         <!-- Admin Management -->
                         <div class="block px-4 py-2 text-xs text-gray-400">
-                            Admin İşlemleri
+                            Sayfalar
                         </div>
 
                         <x-jet-dropdown-link href="{{ route('store.index') }}">
                             Bilgi İşlem
                         </x-jet-dropdown-link>
+
                         @if (Auth()->User()->type=='admin')
                         <x-jet-dropdown-link href="{{ route('stores.index') }}">
                             Sistem ve Ağ
@@ -159,6 +160,24 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <!-- Admin Management -->
+                <x-jet-responsive-nav-link href="{{ route('store.index') }}">
+                    Bilgi İşlem
+                </x-jet-responsive-nav-link>
+                @if (Auth()->User()->type=='admin')
+                <x-jet-responsive-nav-link href="{{ route('stores.index') }}">
+                    Sistem ve Ağ
+                </x-jet-responsive-nav-link>
+                @endif
+
+
+                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                    <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                        {{ __('API Tokens') }}
+                    </x-jet-dropdown-link>
+                @endif
+
+                <div class="border-t border-gray-100"></div>
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}

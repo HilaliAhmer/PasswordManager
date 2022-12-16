@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Store;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StoreFactory extends Factory
@@ -16,6 +17,7 @@ class StoreFactory extends Factory
     public function definition()
     {
         return [
+            'type_id'=>rand(1,2),
             'title'=>$this->faker->sentence(rand(3,7)),
             'username'=>$this->faker->userName(),
             'password'=>$this->faker->password(),

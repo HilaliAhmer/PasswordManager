@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
 
-class StoreController extends Controller
+class UserStoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $passwordStore=Store::where('type_id','2')->paginate(10);
-        return view('admin.store.list',compact('passwordStore'));
+        $passwordUserStore=Store::where('type_id','1')->paginate(10);
+        return view('user.store.list',compact('passwordUserStore'));
     }
 
     /**
@@ -37,7 +37,7 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**

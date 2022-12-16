@@ -3,7 +3,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\StoreController;
-use App\Http\Controllers\UserStoreController;
+use App\Http\Controllers\User\UserStoreController;
+use App\Http\Controllers\Common\CommonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::middleware(['auth', 'verified'])->get('/panel', function () {
 Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
     Route::resource('stores', StoreController::class);
 });
-Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'user'],function () {
+Route::group(['prefix'=>'user'],function () {
     Route::resource('store', UserStoreController::class);
+});
+Route::group(['prefix'=>'common'],function () {
+    Route::resource('password', CommonController::class);
 });
