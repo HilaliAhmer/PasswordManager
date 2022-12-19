@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\User\UserStoreController;
 use App\Http\Controllers\Common\CommonController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,9 @@ use App\Http\Controllers\Common\CommonController;
 
 Route::redirect('/', 'login');
 
-Route::middleware(['auth', 'verified'])->get('/panel', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::group(['middleware'=> 'auth'],function () {
+    Route::get('panel',[DashboardController::class,'dashboard'])->name('dashboard');
+});
 
 Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
     Route::resource('stores', StoreController::class);

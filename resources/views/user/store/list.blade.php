@@ -1,5 +1,5 @@
+@section('title','Bilgi İşlem Şifreler')
 <x-app-layout>
-    <x-slot name="header">Bilgi İşlem Şifreler</x-slot>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
