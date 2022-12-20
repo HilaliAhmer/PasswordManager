@@ -9,7 +9,7 @@ class Store extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'type_id',
+        'password_type_id',
         'title',
         'username',
         'password',

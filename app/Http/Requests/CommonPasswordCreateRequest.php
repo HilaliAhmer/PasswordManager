@@ -27,7 +27,7 @@ class CommonPasswordCreateRequest extends FormRequest
             'title'=>'required|min:3|max:200',
             'username'=>'required|min:3|max:200',
             'password'=>'required|min:8|max:200',
-            'type_id'=>'required',
+            'password_type_id'=>'required',
         ];
     }
     public function Attributes()
@@ -36,7 +36,7 @@ class CommonPasswordCreateRequest extends FormRequest
             'title'=>'Şifre başlığı',
             'username'=>'Kullanıcı adı',
             'password'=>'Şifre',
-            'type_id'=>'Şifre tipi',
+            'password_type_id'=>'Şifre tipi',
         ];
     }
 }

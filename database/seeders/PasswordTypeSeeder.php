@@ -19,5 +19,11 @@ class PasswordTypeSeeder extends Seeder
         \App\Models\PasswordType::insert([
             'type_name'=>'System ve Network',
         ]);
+        \App\Models\PasswordType::insert([
+            'type_name'=>'SAP',
+        ]);
+        \App\Models\PasswordType::insert([
+            'type_name'=>'Non-SAP',
+        ]);
     }
 }

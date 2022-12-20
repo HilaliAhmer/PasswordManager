@@ -15,7 +15,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $passwordStore=Store::where('type_id','2')->paginate(10);
+        $passwordStore=Store::where('password_type_id','2')->paginate(10);
         return view('admin.store.list',compact('passwordStore'));
     }
 

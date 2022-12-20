@@ -10,12 +10,11 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        // To Do
-        // $getpasswordtype=PasswordType::get();
+        $passwordtype_count=PasswordType::count();
+        $passwordtypes=PasswordType::withCount('stores')->get();
+        $getpassworddashboard=Store::orderByDesc('created_at')->limit(10)->get();
+        $getpassword=Store::select(['id','title','password','strong_password'])->where('strong_password','0')->orderByDesc('created_at')->limit(10)->get();
+        return view('dashboard' , compact('getpassworddashboard','passwordtypes','passwordtype_count','getpassword'));
 
-        $getpassworddashboard=Store::orderByDesc('created_at')->limit(5)->get();
-        $getitcountdashboard=Store::where('type_id','1')->count();
-        $getsystemcountdashboard=Store::where('type_id','2')->count();
-        return view('dashboard' , compact('getpassworddashboard','getitcountdashboard','getsystemcountdashboard',));
     }
 }

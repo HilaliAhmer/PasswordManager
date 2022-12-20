@@ -15,14 +15,15 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('password_type_id');
             $table->string('title');
             $table->string('username');
             $table->string('password');
+            $table->boolean('strong_password')->nullable()->default(false);
             $table->string('url')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
-            $table->foreign('type_id')->references('id')->on('password_types')->onDelete('cascade');
+            $table->foreign('password_type_id')->references('id')->on('password_types')->onDelete('cascade');
         });
     }
 

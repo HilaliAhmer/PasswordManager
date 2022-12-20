@@ -18,9 +18,9 @@
                         value="{{ old('password') }}">
                     <span class="input-group-text" onclick="myFunction()"><i class="fa fa-eye"></i></span>
                 </div>
-                <label for="password_type" class="form-label">Şifre Tipi</label>
+                <label for="password_type_id" class="form-label">Şifre Tipi</label>
                 <div class="mb-3">
-                    <select class="form-select" name="type_id">
+                    <select class="form-select" name="password_type_id">
                         <option value="" selected>Password tipini seçiniz.</option>
                         @foreach ($passwordType as $type)
                             <option value="{{ $type->id }}">{{ $type->id }} - {{ $type->type_name }}</option>

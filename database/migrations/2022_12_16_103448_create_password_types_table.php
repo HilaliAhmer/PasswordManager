@@ -16,6 +16,7 @@ class CreatePasswordTypesTable extends Migration
         Schema::create('password_types', function (Blueprint $table) {
             $table->id();
             $table->string('type_name');
+            $table->string('sembol')->nullable()->default('fa-solid fa-key');
             $table->timestamps();
         });
     }
