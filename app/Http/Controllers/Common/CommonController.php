@@ -39,8 +39,11 @@ class CommonController extends Controller
      */
     public function store(CommonPasswordCreateRequest $request)
     {
-        $post_type=$request->type_id;
+        $post_type=$request->password_type_id;
         $post_title=$request->title;
+
+        $post_pass=$request->password;
+
         Store::create($request->post());
         switch ($post_type) {
             case '1':
@@ -50,6 +53,11 @@ class CommonController extends Controller
                 break;
         }
 
+        $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*+?&])[A-Za-z\d@!%*+?&]{8,}$/';
+        $strong_password=preg_match($regex_pass,$post_pass);
+        Store::table('stores')->insert([
+            'strong_password'=>$strong_password,
+        ]);
     }
 
     /**
