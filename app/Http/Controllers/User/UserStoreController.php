@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
+use App\Models\User;
+use App\Models\PasswordType;
 
 class UserStoreController extends Controller
 {
@@ -15,7 +17,8 @@ class UserStoreController extends Controller
      */
     public function index()
     {
-        $passwordUserStore=Store::where('password_type_id','1')->paginate(10);
+        $userRole= auth()->user()->role;
+        $passwordUserStore=Store::where('password_type_id',$userRole)->paginate(10);
         return view('user.store.list',compact('passwordUserStore'));
     }
 

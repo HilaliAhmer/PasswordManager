@@ -1,3 +1,4 @@
+@section('title','Şifre Ekle')
 <x-app-layout>
     <x-slot name="header">Şifre Ekle</x-slot>
     <div class="card">
@@ -36,7 +37,7 @@
                     <textarea name="description" class="form-control" rows="5">{{ old('description') }}</textarea>
                 </div>
                 <div class="mb-3 d-grid gap-2">
-                    <button type="submit" class="btn btn-dark">Şifre Ekle</button>
+                    <button type="submit" class="btn btn-passwordmanager">Ekle</button>
                 </div>
             </form>
         </div>

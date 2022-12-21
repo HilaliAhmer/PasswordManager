@@ -31,5 +31,6 @@ Route::group(['prefix'=>'user'],function () {
     Route::resource('store', UserStoreController::class);
 });
 Route::group(['prefix'=>'common'],function () {
+    Route::get('password/{id}',[CommonController::class,'destroy'])->whereNumber('id')->name('password.destroy');
     Route::resource('password', CommonController::class);
 });

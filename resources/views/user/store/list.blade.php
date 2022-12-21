@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
-                <a href="{{ route('password.create') }}" class="btn btn-dark "><i
+                <a href="{{ route('password.create') }}" class="btn btn-passwordmanager"><i
                         class="fa-regular fa-square-plus"></i> Yeni Şifre</a>
             </h5>
             <div class="table-responsive-md">
@@ -36,10 +36,10 @@
                                 </td>
                                 <td>{{ Str::limit($password->description, config('app.text_limit'), '...') }}</td>
                                 <td>
-                                    <a href="{{ route('stores.edit', $password->id) }}"
+                                    <a href="{{ route('password.edit', $password->id) }}"
                                         class="btn btn-sm btn-primariy"><i class="fa fa-edit"></i></a>
                                     @if (Auth()->user()->type == 'admin')
-                                        <a href="#" class="btn btn-sm btn-primariy"><i
+                                        <a href="{{ route('password.destroy', $password->id) }}" class="btn btn-sm btn-primariy"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     @endif
                                 </td>

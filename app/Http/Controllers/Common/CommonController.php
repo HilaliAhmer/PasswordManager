@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 Use App\Models\PasswordType;
 Use App\Models\Store;
 Use App\Http\Requests\CommonPasswordCreateRequest;
+Use App\Http\Requests\CommonPasswordUpdateRequest;
 
 class CommonController extends Controller
 {
@@ -68,7 +69,7 @@ class CommonController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -79,7 +80,9 @@ class CommonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $passwordType=PasswordType::get();
+        $passwordEdit=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        return view('common.store.edit', compact('passwordEdit','passwordType'));
     }
 
     /**
@@ -89,9 +92,21 @@ class CommonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CommonPasswordUpdateRequest $request, $id)
     {
-        //
+        $post_type=$request->password_type_id;
+        $post_title=$request->title;
+
+        $passwordEdit=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        Store::where('id',$id)->update($request->except(['_method','_token']));
+
+        switch ($post_type) {
+            case '1':
+                return redirect()->route('store.index')->withSuccess($post_title.' başarı ile güncelendi.');
+            case '2':
+                return redirect()->route('stores.index')->withSuccess($post_title.' başarı ile güncelendi.');
+                break;
+        }
     }
 
     /**
@@ -102,6 +117,10 @@ class CommonController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $passworddestroy=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        $passworddestroy->delete();
+        return back()->withSuccess($passworddestroy->title.' silme işlemi başarı ile gerçekleşti.');
+
     }
 }

@@ -1,0 +1,21 @@
+.text-bg-passwordmanager {
+  color: #cfe9fa !important;
+  background-color: RGBA(41, 81, 125, var(--bs-bg-opacity, 1)) !important;
+}
+
+.btn-passwordmanager {
+    --bs-btn-color: #cfe9fa;
+    --bs-btn-bg: #29517d;
+    --bs-btn-border-color: #1c4169;
+    --bs-btn-hover-color: #cfe9fa;
+    --bs-btn-hover-bg: #4f78a3;
+    --bs-btn-hover-border-color: #1c4169;
+    --bs-btn-focus-shadow-rgb: 66, 70, 73;
+    --bs-btn-active-color: #cfe9fa;
+    --bs-btn-active-bg: #4f78a3;
+    --bs-btn-active-border-color: #1c4169;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #cfe9fa;
+    --bs-btn-disabled-bg: #1c3249;
+    --bs-btn-disabled-border-color: #14212e;
+}

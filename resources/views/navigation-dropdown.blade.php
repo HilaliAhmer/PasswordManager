@@ -44,6 +44,14 @@
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             Sayfalar
                         </div>
+                            {{-- @php
+                                $passwordType = App\Models\PasswordType::get();
+                            @endphp
+                            @foreach ($passwordType as $type )
+                                <x-jet-dropdown-link href="{{ route('store.index', $type->id) }}">
+                                    {{$type->type_name }}
+                                </x-jet-dropdown-link>
+                            @endforeach --}}
 
                         <x-jet-dropdown-link href="{{ route('store.index') }}">
                             Bilgi İşlem
