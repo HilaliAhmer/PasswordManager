@@ -17,8 +17,7 @@ class UserStoreController extends Controller
      */
     public function index()
     {
-        $userRole= auth()->user()->role;
-        $passwordUserStore=Store::where('password_type_id',$userRole)->paginate(10);
+        $passwordUserStore=Store::where('password_type_id','1')->paginate(10);
         return view('user.store.list',compact('passwordUserStore'));
     }
 
