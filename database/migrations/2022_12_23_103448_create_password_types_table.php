@@ -17,6 +17,7 @@ class CreatePasswordTypesTable extends Migration
             $table->id();
             $table->string('type_name');
             $table->string('sembol')->nullable()->default('fa-solid fa-key');
+            $table->unsignedBigInteger('password_type_role_id');
             $table->timestamps();
         });
     }

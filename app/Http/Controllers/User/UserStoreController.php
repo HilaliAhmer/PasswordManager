@@ -17,8 +17,13 @@ class UserStoreController extends Controller
      */
     public function index()
     {
-        $passwordUserStore=Store::where('password_type_id','1')->paginate(10);
-        return view('user.store.list',compact('passwordUserStore'));
+        //
+    }
+    public function listele($id)
+    {
+        $passwordUserStore=Store::where('password_type_id',$id)->paginate(10);
+        $listname=PasswordType::where('id',$id)->get();
+        return view('user.store.list',compact('passwordUserStore','listname'));
     }
 
     /**
@@ -61,7 +66,7 @@ class UserStoreController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\StoreController;
+use App\Http\Controllers\Admin\UserListController;
 use App\Http\Controllers\User\UserStoreController;
 use App\Http\Controllers\Common\CommonController;
 use App\Http\Controllers\DashboardController;
@@ -24,10 +25,14 @@ Route::group(['middleware'=> 'auth'],function () {
     Route::get('panel',[DashboardController::class,'dashboard'])->name('dashboard');
 });
 
+// Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
+//     Route::resource('stores', StoreController::class);
+// });
 Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
-    Route::resource('stores', StoreController::class);
+    Route::resource('userlist', UserListController::class);
 });
 Route::group(['prefix'=>'user'],function () {
+    Route::get('store/{id}',[UserStoreController::class,'listele'])->whereNumber('id')->name('store.listele');
     Route::resource('store', UserStoreController::class);
 });
 Route::group(['prefix'=>'common'],function () {

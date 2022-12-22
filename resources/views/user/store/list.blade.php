@@ -1,4 +1,4 @@
-@section('title','Bilgi İşlem Şifreler')
+@section('title', 'Bilgi İşlem Şifreler')
 <x-app-layout>
     <div class="card">
         <div class="card-body">
@@ -8,7 +8,9 @@
             </h5>
             <div class="table-responsive-md">
                 <table class="table table-bordered table-hover caption-top">
-                    <caption>Bilgi İşlem</caption>
+                    @foreach ($listname as $lname)
+                        <caption>{{ $lname->type_name }}</caption>
+                    @endforeach
                     <thead>
                         <tr>
                             <th scope="col">Şifre Adı</th>
@@ -26,21 +28,23 @@
                                 <td><strong>{{ $password->username }}</strong></td>
                                 <td>
                                     <div class="input-group">
-                                        <input id="{{ $password->id }}" type="password" class="form-control form-control-sm" value="{{ $password->password }}"
-                                        disabled readonly>
+                                        <input id="{{ $password->id }}" type="password"
+                                            class="form-control form-control-sm" value="{{ $password->password }}"
+                                            disabled readonly>
                                         <i class="input-group-text pt-7 fas fa-eye"></i>
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{ $password->url }}">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
+                                    <a
+                                        href="{{ $password->url }}">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
                                 </td>
                                 <td>{{ Str::limit($password->description, config('app.text_limit'), '...') }}</td>
                                 <td>
                                     <a href="{{ route('password.edit', $password->id) }}"
                                         class="btn btn-sm btn-primariy"><i class="fa fa-edit"></i></a>
                                     @if (Auth()->user()->type == 'admin')
-                                        <a href="{{ route('password.destroy', $password->id) }}" class="btn btn-sm btn-primariy"><i
-                                                class="fa-solid fa-trash"></i></a>
+                                        <a href="{{ route('password.destroy', $password->id) }}"
+                                            class="btn btn-sm btn-primariy"><i class="fa-solid fa-trash"></i></a>
                                     @endif
                                 </td>
                             </tr>
