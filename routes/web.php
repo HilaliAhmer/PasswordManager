@@ -28,7 +28,7 @@ Route::group(['middleware'=> 'auth'],function () {
 // Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
 //     Route::resource('stores', StoreController::class);
 // });
-Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {
+Route::group(['middleware'=> ['auth','role:IT Super Admin'],'prefix'=>'admin'],function () {
     Route::resource('userlist', UserListController::class);
 });
 Route::group(['prefix'=>'user'],function () {
