@@ -20,7 +20,7 @@ class StoreFactory extends Factory
         $password=$this->faker->password();
         $strong_password=preg_match($regex_pass,$password);
         return [
-            'password_type_id'=>rand(1,2),
+            'password_type_id'=>rand(1,4),
             'title'=>$this->faker->sentence(rand(3,7)),
             'username'=>$this->faker->userName(),
             'password'=>$password,
