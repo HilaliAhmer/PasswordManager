@@ -45,12 +45,14 @@
                                         aria-labelledby="flush-heading{{ $type->id }}"
                                         data-bs-parent="#strong_password_accordion">
                                         <div class="accordion-body">
-                                            <div class="alert alert-danger">
-                                                <ol>
-                                                    <li>Şifren en az 8 karakterden oluşmalı</li>
-                                                    <li>İçerisinde en az 1 adet büyük harf olmalı</li>
-                                                    <li>İçerisinde en az 1 adet küçük harf olmalı</li>
-                                                    <li>Sadece şu özel karakterleri içermeli <code>@!%*+?&</code></li>
+                                            <div class="alert alert-warning" role="alert">
+                                                <h4 class="alert-heading">Düzenlenmesi gerekli!</h4>
+                                                <hr>
+                                                <ol class="list-unstyled">
+                                                    <li>1- Şifren en az 8 karakterden oluşmalı</li>
+                                                    <li>2- İçerisinde en az 1 adet büyük harf olmalı</li>
+                                                    <li>3- İçerisinde en az 1 adet küçük harf olmalı</li>
+                                                    <li>4- Sadece şu özel karakterleri içermeli <code>@!%*+?&</code></li>
                                                 </ol>
                                             </div>
                                         </div>

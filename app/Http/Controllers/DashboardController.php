@@ -10,6 +10,9 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
+
+        // TO DO $getpassword objesi kullanarak düzenlenmesi gereken şifrelerin arızalı kısımlarının tespit edilmesi.
+
         $passwordtype_count=PasswordType::count();
         $passwordtypes=PasswordType::withCount('stores')->get();
         $getpassworddashboard=Store::orderByDesc('created_at')->limit(10)->get();

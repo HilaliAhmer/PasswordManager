@@ -29,6 +29,7 @@ Route::group(['middleware'=> 'auth'],function () {
 //     Route::resource('stores', StoreController::class);
 // });
 Route::group(['middleware'=> ['auth','role:IT Super Admin'],'prefix'=>'admin'],function () {
+    Route::get('userlist/{id}',[UserListController::class,'destroy'])->whereNumber('id')->name('store.destroy');
     Route::resource('userlist', UserListController::class);
 });
 Route::group(['prefix'=>'user'],function () {

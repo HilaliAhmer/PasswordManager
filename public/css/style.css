@@ -20,3 +20,8 @@
   --bs-btn-disabled-border-color: #14212e;
 }
 
+.tooltip {
+  --bs-tooltip-color: #cfe9fa;
+  --bs-tooltip-bg: #29517d;
+}
+

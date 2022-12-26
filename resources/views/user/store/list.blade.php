@@ -2,12 +2,24 @@
 <x-app-layout>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">
-                <a href="{{ route('password.create') }}" class="btn btn-passwordmanager"><i
-                        class="fa-regular fa-square-plus"></i> Yeni Şifre</a>
-            </h5>
+            <div class="row">
+                <div class="col-md-2 d-grid">
+                    <a href="{{ route('password.create') }}" class="btn btn-passwordmanager"><i
+                            class="fa-regular fa-square-plus"></i> Yeni Şifre</a>
+                </div>
+                <div class="col-md-4">
+                    <form method="GET" action="">
+                        <div class="input-group">
+                            <input type="text" name="title" placeholder="Şifre ara" class="form-control"
+                                value="{{ request()->get('title') }}">
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="border border-primary border-1 opacity-50">
             <div class="table-responsive-md">
-                <table class="table table-bordered table-hover caption-top">
+                <table class="table table-hover caption-top">
                     @foreach ($listname as $lname)
                         <caption>{{ $lname->type_name }}</caption>
                     @endforeach
@@ -24,7 +36,11 @@
                     <tbody>
                         @foreach ($passwordUserStore as $password)
                             <tr>
-                                <td>{{ Str::limit($password->title, config('app.text_limit')) }}</td>
+                                <td>
+                                    <p data-bs-toggle="title-tooltip" data-bs-title="{{ $password->title }}">
+                                        {{ Str::limit($password->title, config('app.text_limit')) }}
+                                    </p>
+                                </td>
                                 <td><strong>{{ $password->username }}</strong></td>
                                 <td>
                                     <div class="input-group">
@@ -35,17 +51,20 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a
-                                        href="{{ $password->url }}">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
+                                    <a href="{{ $password->url }}" data-bs-toggle="" data-bs-title="{{ $password->url }}">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
                                 </td>
-                                <td>{{ Str::limit($password->description, config('app.text_limit'), '...') }}</td>
+                                <td>
+                                    <p data-bs-toggle="description-tooltip" data-bs-title="{{ $password->description }}">
+                                        {{ Str::limit($password->description, config('app.text_limit'), '...') }}
+                                    </p>
+                                </td>
                                 <td>
                                     <a href="{{ route('password.edit', $password->id) }}"
                                         class="btn btn-sm btn-primariy"><i class="fa fa-edit"></i></a>
-                                    @if (Auth()->user()->type == 'admin')
+                                    @role('IT Super Admin')
                                         <a href="{{ route('password.destroy', $password->id) }}"
                                             class="btn btn-sm btn-primariy"><i class="fa-solid fa-trash"></i></a>
-                                    @endif
+                                    @endrole
                                 </td>
                             </tr>
                         @endforeach
@@ -75,4 +94,7 @@
             showHide(inputElm, spanElm);
         }
     });
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="description-tooltip"')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>

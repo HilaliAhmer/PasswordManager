@@ -40,19 +40,16 @@ class CommonController extends Controller
      */
     public function store(CommonPasswordCreateRequest $request)
     {
+        // return $request->post();
         $post_type=$request->password_type_id;
         $post_title=$request->title;
 
         $post_pass=$request->password;
 
         Store::create($request->post());
-        switch ($post_type) {
-            case '1':
-                return redirect()->route('store.index')->withSuccess($post_title.' başarı ile eklendi.');
-            case '2':
-                return redirect()->route('stores.index')->withSuccess($post_title.' başarı ile eklendi.');
-                break;
-        }
+        $passwordUserStore=Store::where('password_type_id',$post_type)->paginate(10);
+        $listname=PasswordType::where('id',$post_type)->get();
+        return view('user.store.list',compact('passwordUserStore','listname'));
 
         $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*+?&])[A-Za-z\d@!%*+?&]{8,}$/';
         $strong_password=preg_match($regex_pass,$post_pass);

@@ -77,12 +77,12 @@ class UserListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $passwordEdit=User::find($id) ?? abort(404 , 'Kullanıcı bulunamadı.');
-        $passwordEdit->name=$request->name;
-        $passwordEdit->email=$request->email;
-        $passwordEdit->type=$request->type;
-        $passwordEdit->save();
-        $passwordEdit->syncRoles($request->role);
+        $userEdit=User::find($id) ?? abort(404 , 'Kullanıcı bulunamadı.');
+        $userEdit->name=$request->name;
+        $userEdit->email=$request->email;
+        $userEdit->type=$request->type;
+        $userEdit->save();
+        $userEdit->syncRoles($request->role);
         return redirect()->route('userlist.index')->withSuccess(' Kullanıcı rolü başarı ile güncelendi.');
     }
 
@@ -94,6 +94,12 @@ class UserListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $passworddestroy=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        // $passworddestroy->delete();
+        // return back()->withSuccess($passworddestroy->title.' silme işlemi başarı ile gerçekleşti.');
+
+        $userDelete=User::find($id) ?? abort(404 , 'Kullanıcı Bulunamadı.');
+        $userDelete->delete();
+        return back()->withSuccess($userDelete->name.' kullanıcısı başarı ile silindi.');
     }
 }
