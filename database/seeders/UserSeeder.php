@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
@@ -14,14 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::insert([
-            'name'=>'Selahattin Açıkgöz',
-            'email'=>'s.acikgoz@korsini.com',
-            'type'=>'admin',
-            'email_verified_at' => now(),
-            'password' => '$2y$10$1iNDp4q5TcpHYTw.JsnH8ut3mf38biw8QT9eVaaG2JsCKepretM4q', // Trapper35!
-            'remember_token' => Str::random(10),
-        ]);
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create()->each(function ($user) {
+            $user->assignRole('IT Standart User'); //tüm kullanıcılar standart user olur.
+        });
     }
 }

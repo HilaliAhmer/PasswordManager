@@ -22,6 +22,7 @@ class CreateStoresTable extends Migration
             $table->boolean('strong_password')->nullable()->default(false);
             $table->string('url')->nullable();
             $table->longText('description')->nullable();
+            $table->string('slug');
             $table->timestamps();
             $table->foreign('password_type_id')->references('id')->on('password_types')->onDelete('cascade');
         });

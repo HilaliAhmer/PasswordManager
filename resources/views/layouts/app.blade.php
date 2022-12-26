@@ -37,13 +37,13 @@
                 @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li><i class="fa-solid fa-circle-exclamation"></i> {{ $error }}</li>
                         @endforeach
                     </div>
                 @endif
                 @if(session('success'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
+                        <i class="fa-solid fa-clipboard-check"></i> {{ session('success') }}
                     </div>
                 @endif
                 {{ $slot }}

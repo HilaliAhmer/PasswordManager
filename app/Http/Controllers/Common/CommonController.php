@@ -49,7 +49,7 @@ class CommonController extends Controller
         Store::create($request->post());
         $passwordUserStore=Store::where('password_type_id',$post_type)->paginate(10);
         $listname=PasswordType::where('id',$post_type)->get();
-        return view('user.store.list',compact('passwordUserStore','listname'));
+        return redirect()->route('store.listele',$post_type)->withCompact('passwordUserStore','listname')->withSuccess($post_title.' başarı ile eklendi.');
 
         $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*+?&])[A-Za-z\d@!%*+?&]{8,}$/';
         $strong_password=preg_match($regex_pass,$post_pass);
@@ -95,15 +95,18 @@ class CommonController extends Controller
         $post_title=$request->title;
 
         $passwordEdit=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
-        Store::where('id',$id)->update($request->except(['_method','_token']));
+        $passwordEdit->slug=null;
+        $passwordEdit->title=$request->title;
+        $passwordEdit->username=$request->username;
+        $passwordEdit->password=$request->password;
+        $passwordEdit->password_type_id=$request->password_type_id;
+        $passwordEdit->url=$request->url;
+        $passwordEdit->description=$request->description;
+        $passwordEdit->save();
+        // dd($passwordEdit);
+        // Store::where('id',$id)->first()->update($request->except(['_method','_token']));
 
-        switch ($post_type) {
-            case '1':
-                return redirect()->route('store.index')->withSuccess($post_title.' başarı ile güncelendi.');
-            case '2':
-                return redirect()->route('stores.index')->withSuccess($post_title.' başarı ile güncelendi.');
-                break;
-        }
+        return redirect()->route('store.listele' , $post_type)->withSuccess($post_title.' başarı ile güncelendi.');
     }
 
     /**

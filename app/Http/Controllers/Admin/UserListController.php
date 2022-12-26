@@ -19,7 +19,7 @@ class UserListController extends Controller
     public function index()
     {
         $userRole=Role::get();
-        $users=User::with('roles')->get();
+        $users=User::with('roles')->paginate(5);
         return view('admin.store.userList',compact('users','userRole'));
     }
 

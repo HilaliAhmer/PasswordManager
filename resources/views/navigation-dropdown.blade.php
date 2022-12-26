@@ -47,17 +47,11 @@
 
                     <x-slot name="content">
                         <!-- Admin Management -->
+                        @hasanyrole(Spatie\Permission\Models\Role::all())
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             Şifreleri Listele
                         </div>
-                        {{-- @php
-                            $passwordType = App\Models\PasswordType::get();
-                        @endphp
-                        @foreach ($passwordType as $type)
-                            <x-jet-dropdown-link href="{{ route('store.listele', $type->id) }}">
-                                {{ $type->type_name }}
-                            </x-jet-dropdown-link>
-                        @endforeach --}}
+                        @endhasanyrole
                         @role('IT Super Admin|IT Standart User')
                             <x-jet-dropdown-link href="{{ route('store.listele', '1') }}">
                                 Bilgi İşlem
@@ -83,9 +77,9 @@
                                 {{ __('API Tokens') }}
                             </x-jet-dropdown-link>
                         @endif
-
-                        <div class="border-t border-gray-100"></div>
-
+                        @hasanyrole(Spatie\Permission\Models\Role::all())
+                            <div class="border-t border-gray-100"></div>
+                        @endhasanyrole
                         <!-- Admin Management -->
                         @role('IT Super Admin')
                             <div class="block px-4 py-2 text-xs text-gray-400">
