@@ -1,4 +1,4 @@
-<p align="center">Password Store</p>
+## <p align="center">Password Store</p>
 
 
 
