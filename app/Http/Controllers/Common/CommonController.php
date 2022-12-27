@@ -51,7 +51,7 @@ class CommonController extends Controller
         $listname=PasswordType::where('id',$post_type)->get();
         return redirect()->route('store.listele',$post_type)->withCompact('passwordUserStore','listname')->withSuccess($post_title.' başarı ile eklendi.');
 
-        $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*+?&])[A-Za-z\d@!%*+?&]{8,}$/';
+        $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=@!%*\-+?&.\/_])[A-Za-z\d=@!%*\-+?&.\/_]{8,}$/';
         $strong_password=preg_match($regex_pass,$post_pass);
         Store::table('stores')->insert([
             'strong_password'=>$strong_password,
@@ -106,7 +106,7 @@ class CommonController extends Controller
         // dd($passwordEdit);
         // Store::where('id',$id)->first()->update($request->except(['_method','_token']));
         if (session('tasks_url')) {
-            return redirect(session('tasks_url'));
+            return redirect(session('tasks_url'))->withSuccess($post_title.' başarı ile güncelendi.');
         }
         return redirect()->route('store.listele' , $post_type)->withSuccess($post_title.' başarı ile güncelendi.');
     }

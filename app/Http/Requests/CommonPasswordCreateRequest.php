@@ -26,7 +26,7 @@ class CommonPasswordCreateRequest extends FormRequest
         return [
             'title'=>'required|min:3|max:200',
             'username'=>'required|min:3|max:200',
-            'password'=>'required|min:8|max:200',
+            'password'=>'required|min:8|max:32',
             'password_type_id'=>'required',
         ];
     }

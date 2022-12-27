@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Crypt;
+
 class StoreFactory extends Factory
 {
     protected $model=Store::class;

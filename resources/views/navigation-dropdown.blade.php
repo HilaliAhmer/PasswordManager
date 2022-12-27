@@ -88,6 +88,9 @@
                             <x-jet-dropdown-link href="{{ route('userlist.index') }}">
                                 Kullanıcı Listesi
                             </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('passwordCheck') }}">
+                                Şifreleri Tara
+                            </x-jet-dropdown-link>
                         @endrole
 
                         <!-- Account Management -->

@@ -23,6 +23,7 @@ Route::redirect('/', 'login');
 
 Route::group(['middleware'=> 'auth'],function () {
     Route::get('panel',[DashboardController::class,'dashboard'])->name('dashboard');
+    Route::get('passwordCheck',[DashboardController::class,'passwordCheck'])->name('passwordCheck');
 });
 
 // Route::group(['middleware'=> ['auth','isAdmin'],'prefix'=>'admin'],function () {

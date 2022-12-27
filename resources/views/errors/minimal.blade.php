@@ -83,7 +83,7 @@
                         <div class="four_zero_four_bg"></div>
                         <div class="contant_box_404">
                             <p class="fs-1">@yield('code')</p>
-                            <p class="fs-3">Kaybolmuş gibi gözüküyorsun.</p>
+                            <p class="fs-3">@yield('title')</p>
                             <p class="fs-4">@yield('message')</p>
                             <a href="{{ route('dashboard') }}" class="btn btn-warning">Anasayfaya Geri Dön</a>
                         </div>
