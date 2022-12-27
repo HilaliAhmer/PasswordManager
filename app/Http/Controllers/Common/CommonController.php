@@ -105,7 +105,9 @@ class CommonController extends Controller
         $passwordEdit->save();
         // dd($passwordEdit);
         // Store::where('id',$id)->first()->update($request->except(['_method','_token']));
-
+        if (session('tasks_url')) {
+            return redirect(session('tasks_url'));
+        }
         return redirect()->route('store.listele' , $post_type)->withSuccess($post_title.' başarı ile güncelendi.');
     }
 

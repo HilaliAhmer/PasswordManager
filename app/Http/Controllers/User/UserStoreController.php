@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Models\Store;
 use App\Models\User;
 use App\Models\PasswordType;
@@ -22,11 +23,15 @@ class UserStoreController extends Controller
     public function listele($id)
     {
         $passwordUserStore=Store::where('password_type_id',$id);
+        // Arama kutusu için kod --START--
         if (request()->get('title')) {
             $passwordUserStore=$passwordUserStore->where('title','LIKE',"%".request()->get('title')."%");
         }
         $listname=PasswordType::where('id',$id)->get();
+        // Arama kodu tamamlandı --END--
         $passwordUserStore=$passwordUserStore->paginate(10);
+
+        Session::put('tasks_url',request()->fullUrl());
         return view('user.store.list',compact('passwordUserStore','listname'));
     }
 
