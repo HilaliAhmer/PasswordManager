@@ -20,25 +20,25 @@
 
 ## Kurulum
 
-- Php download edip C: dizini altındaki PHP isimli klasöre çıkarınız.
-- Ardından ```C:\inetpub\wwwroot``` klasöründe yayınlayacağınız içeriğe göre bir klasör yaratınız. Örn: PasswordManager
-- Kurulumunu yaptığınız git ile şu komutla repository klon ediniz.
-```
-git clone https://github.com/HilaliAhmer/PasswordManager.git "C:\inetpub\wwwroot\PasswordManager"
-```
--PHP Manager 1.5.0 for IIS 10 ve Url Rewriter kurulumunu yapınız.
--Ardından IIS'de PasswordManager isimli bir site oluşturup fiziksel pathine `C:\inetpub\wwwroot\PasswordManager\public` klasörünü yol olarak gösterip yayınlayınız.
--PasswordManager site'ı altında PHP managere giriş yapınız ve register new PHP version diyerek C dizini altında bulunan php-chi.exe dosyasını gösterip php ile register olunuz.
--Sonra tekrar `C:\inetpub\wwwroot\PasswordManager\` klasörüne gidiniz
--.env dosyasındaki database ayarlarınızı yapınız.
--`C:\inetpub\wwwroot\PasswordManager\` klasörü içerisinde bir terminal açarak sırası ile aşağıdaki komutları yürütünüz.
-```
-composer install
-npm install
-npm run production
-php artisan key:generate
-php artisan migrate
-```
+    - Php download edip C: dizini altındaki PHP isimli klasöre çıkarınız.
+    - Ardından ```C:\inetpub\wwwroot``` klasöründe yayınlayacağınız içeriğe göre bir klasör yaratınız. Örn: PasswordManager
+    - Kurulumunu yaptığınız git ile şu komutla repository klon ediniz.
+    ```
+    git clone https://github.com/HilaliAhmer/PasswordManager.git "C:\inetpub\wwwroot\PasswordManager"
+    ```
+    - PHP Manager 1.5.0 for IIS 10 ve Url Rewriter kurulumunu yapınız.
+    - Ardından IIS'de PasswordManager isimli bir site oluşturup fiziksel pathine `C:\inetpub\wwwroot\PasswordManager\public` klasörünü yol olarak gösterip yayınlayınız.
+    - PasswordManager site'ı altında PHP managere giriş yapınız ve register new PHP version diyerek C dizini altında bulunan php-chi.exe dosyasını gösterip php ile register olunuz.
+    - Sonra tekrar `C:\inetpub\wwwroot\PasswordManager\` klasörüne gidiniz
+    - .env dosyasındaki database ayarlarınızı yapınız.
+    - `C:\inetpub\wwwroot\PasswordManager\` klasörü içerisinde bir terminal açarak sırası ile aşağıdaki komutları yürütünüz.
+    ```
+    composer install
+    npm install
+    npm run production
+    php artisan key:generate
+    php artisan migrate
+    ```
 
 
 
