@@ -43,7 +43,7 @@
                     <a href="{{ route('register') }}" style="color: white; text-decoration: none; cursor: pointer;">Kayıt Ol</a>
                 </x-jet-button>
                 <x-jet-button class="ml-4">
-                    {{ __('Giriş') }}
+                    Giriş
                 </x-jet-button>
 
             </div>

@@ -30,8 +30,8 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('Giriş Yap') }}">
-                    {{ __('Zaten Üye misin?') }}
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Zaten Üye Misin?') }}
                 </a>
 
                 <x-jet-button class="ml-4">
