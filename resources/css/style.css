@@ -24,3 +24,6 @@
     --bs-tooltip-color: #cfe9fa;
     --bs-tooltip-bg: #29517d;
 }
+:root{
+    --bs-body-font-size: 0.85rem;
+}

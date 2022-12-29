@@ -39,8 +39,9 @@
                 <div class="mb-3">
                     <textarea name="description" class="form-control" rows="5">{{ $passwordEdit->description }}</textarea>
                 </div>
-                <div class="mb-3 d-grid gap-2">
+                <div class="mb-3 d-grid gap-2 ">
                     <button type="submit" class="btn btn-passwordmanager">Güncelle</button>
+                    <a href="{{ URL::previous() }}" class="btn btn-dark" type="button">Vazgeç</a>
                 </div>
             </form>
         </div>

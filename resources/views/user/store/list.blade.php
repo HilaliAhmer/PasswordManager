@@ -51,7 +51,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{ $password->url }}" data-bs-toggle="" data-bs-title="{{ $password->url }}">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
+                                    <a href="{{ $password->url }}" target="_blank">{{ Str::limit($password->url, config('app.text_limit'), '...') }}</a>
                                 </td>
                                 <td>
                                     <p data-bs-toggle="description-tooltip" data-bs-title="{{ $password->description }}">
