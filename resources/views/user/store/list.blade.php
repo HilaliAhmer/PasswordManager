@@ -3,11 +3,11 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-2 d-grid">
+                <div class="col-md-2 d-grid mb-2">
                     <a href="{{ route('password.create') }}" class="btn btn-passwordmanager"><i
                             class="fa-regular fa-square-plus"></i> Yeni Şifre</a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 d-grid mb-2">
                     <form method="GET" action="">
                         <div class="input-group">
                             <input type="text" name="title" placeholder="Şifre ara" class="form-control"

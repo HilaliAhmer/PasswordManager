@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Store;
-use App\Models\User;
 use App\Models\PasswordType;
 
 class UserStoreController extends Controller

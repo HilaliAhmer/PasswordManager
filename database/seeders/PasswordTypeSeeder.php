@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PasswordTypeSeeder extends Seeder
 {
@@ -15,19 +16,23 @@ class PasswordTypeSeeder extends Seeder
     {
         \App\Models\PasswordType::insert([
             'type_name'=>'Bilgi İşlem',
-            'password_type_role_id'=>'1'
+            'password_type_role_id'=>'1',
+            'slug'=>Str::slug('Bilgi İşlem')
         ]);
         \App\Models\PasswordType::insert([
             'type_name'=>'System ve Network',
-            'password_type_role_id'=>'2'
+            'password_type_role_id'=>'2',
+            'slug'=>Str::slug('System ve Network')
         ]);
         \App\Models\PasswordType::insert([
             'type_name'=>'SAP',
-            'password_type_role_id'=>'3'
+            'password_type_role_id'=>'3',
+            'slug'=>Str::slug('SAP')
         ]);
         \App\Models\PasswordType::insert([
             'type_name'=>'Non-SAP',
-            'password_type_role_id'=>'4'
+            'password_type_role_id'=>'4',
+            'slug'=>Str::slug('Non-SAP')
         ]);
     }
 }
