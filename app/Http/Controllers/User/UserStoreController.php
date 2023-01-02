@@ -10,6 +10,7 @@ use App\Models\PasswordType;
 
 class UserStoreController extends Controller
 {
+    protected $paginationTheme='bootstrap';
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +22,7 @@ class UserStoreController extends Controller
     }
     public function listele($id)
     {
+
         $passwordUserStore=Store::where('password_type_id',$id);
         // Arama kutusu için kod --START--
         if (request()->get('title')) {
