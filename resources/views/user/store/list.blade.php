@@ -1,6 +1,5 @@
 @section('title', 'Bilgi İşlem Şifreler')
 <x-app-layout>
-    <div wire:loading>Loadind</div>
         <div class="card">
             <div class="card-body">
                 <div class="row">
