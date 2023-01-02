@@ -22,7 +22,7 @@ class PasswordTypeSeeder extends Seeder
         \App\Models\PasswordType::insert([
             'type_name'=>'System ve Network',
             'password_type_role_id'=>'2',
-            'slug'=>Str::slug('System ve Network')
+            'slug'=>Str::slug('System ve Ağ')
         ]);
         \App\Models\PasswordType::insert([
             'type_name'=>'SAP',

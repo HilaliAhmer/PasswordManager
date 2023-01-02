@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use App\Models\Store;
 use App\Models\PasswordType;
 
@@ -20,19 +21,34 @@ class UserStoreController extends Controller
     {
 
     }
-    public function listele($id)
+    public function listele(Request $request ,$slug)
     {
+        // $passwordUserStore=DB::table('password_types')
+        // ->rightjoin('stores','password_types.id',"=",'stores.password_type_id')
+        // ->where('password_types.slug',$slug)
+        // ->get();
 
-        $passwordUserStore=Store::where('password_type_id',$id);
-        // Arama kutusu için kod --START--
-        if (request()->get('title')) {
-            $passwordUserStore=$passwordUserStore->where('title','LIKE',"%".request()->get('title')."%");
-        }
-        $listname=PasswordType::where('id',$id)->get();
-        // Arama kodu tamamlandı --END--
-        $passwordUserStore=$passwordUserStore->paginate(10);
+        $listname=PasswordType::whereSlug($slug)->get();
 
         Session::put('tasks_url',request()->fullUrl());
+
+        // Arama kodu tamamlandı -- START --
+        $search_text=$request->title ?? "";
+        if ($search_text!="") {
+            $passwordUserStore=DB::table('password_types')
+            ->join('stores','password_types.id',"=",'stores.password_type_id')
+            ->where([
+                ['password_types.slug',$slug],
+                ['title','LIKE','%'.$search_text.'%'],
+            ])->paginate(10);
+        }else {
+            $passwordUserStore=DB::table('password_types')
+            ->join('stores','password_types.id',"=",'stores.password_type_id')
+            ->where('password_types.slug',$slug)
+            ->paginate(10);
+        }
+         // Arama kodu tamamlandı -- END --
+
         return view('user.store.list',compact('passwordUserStore','listname'));
     }
 

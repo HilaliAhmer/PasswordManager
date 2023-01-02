@@ -53,22 +53,22 @@
                         </div>
                         @endhasanyrole
                         @role('IT Super Admin|IT Standart User')
-                            <x-jet-dropdown-link href="{{ route('store.listele', '1') }}">
+                            <x-jet-dropdown-link href="{{ route('store.listele', 'bilgi-islem') }}">
                                 Bilgi İşlem
                             </x-jet-dropdown-link>
                         @endrole
                         @role('IT Super Admin')
-                            <x-jet-dropdown-link href="{{ route('store.listele', '2') }}">
+                            <x-jet-dropdown-link href="{{ route('store.listele', 'system-ve-ag') }}">
                                 Sistem ve Ağ
                             </x-jet-dropdown-link>
                         @endrole
                         @role('IT Super Admin|IT SAP')
-                            <x-jet-dropdown-link href="{{ route('store.listele', '3') }}">
+                            <x-jet-dropdown-link href="{{ route('store.listele', 'sap') }}">
                                 SAP
                             </x-jet-dropdown-link>
                         @endrole
                         @role('IT Super Admin|IT Non-SAP')
-                            <x-jet-dropdown-link href="{{ route('store.listele', '4') }}">
+                            <x-jet-dropdown-link href="{{ route('store.listele', 'non-sap') }}">
                                 Non-SAP
                             </x-jet-dropdown-link>
                         @endrole

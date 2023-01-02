@@ -25,7 +25,8 @@
                         @endforeach
                         <thead>
                             <tr>
-                                <th scope="col">Şifre Adı</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Şifre Başlığı</th>
                                 <th scope="col">Kullanıcı Adı</th>
                                 <th scope="col">Şifre</th>
                                 <th scope="col">URL</th>
@@ -36,6 +37,7 @@
                         <tbody>
                             @foreach ($passwordUserStore as $password)
                                 <tr>
+                                    <td><strong>{{ ($passwordUserStore->currentPage() - 1) * $passwordUserStore->perPage() + $loop->iteration }}</strong></td>
                                     <td>
                                         <p data-bs-toggle="title-tooltip" data-bs-title="{{ $password->title }}">
                                             {{ Str::limit($password->title, config('app.text_limit')) }}
