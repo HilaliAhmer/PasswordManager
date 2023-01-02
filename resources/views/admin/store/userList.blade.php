@@ -60,7 +60,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $users->links() }}
+                {{ $users->links('pagination.custom') }}
             </div>
         </div>
 </x-app-layout>
