@@ -1,6 +1,20 @@
 @section('title', 'Bilgi İşlem Şifreler')
 <x-app-layout>
-        <div class="card">
+    <div class="card">
+        @if (count($status) <= 0)
+            <div class="text-center">
+                <div class="card-body">
+                    <h4 class="card-title">{{ $listname->first()->type_name }} kategorisi için şifre bulunamadı</h4>
+                    <p class="card-text">Bu kategori için kaydedilmiş şifre bulunmamaktadır.</p>
+                    <p class="card-text">İlk şifreyi sen eklemek ister misin?</p>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{{ route('password.create') }}" class="btn btn-passwordmanager"><i
+                                class="fa-regular fa-square-plus"></i> Yeni Şifre</a>
+                    </div>
+
+                </div>
+            </div>
+        @else
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2 d-grid mb-2">
@@ -37,7 +51,8 @@
                         <tbody>
                             @foreach ($passwordUserStore as $password)
                                 <tr>
-                                    <td><strong>{{ ($passwordUserStore->currentPage() - 1) * $passwordUserStore->perPage() + $loop->iteration }}</strong></td>
+                                    <td><strong>{{ ($passwordUserStore->currentPage() - 1) * $passwordUserStore->perPage() + $loop->iteration }}</strong>
+                                    </td>
                                     <td>
                                         <p data-bs-toggle="title-tooltip" data-bs-title="{{ $password->title }}">
                                             {{ Str::limit($password->title, config('app.text_limit')) }}
@@ -77,7 +92,8 @@
                     {{ $passwordUserStore->links('pagination.custom') }}
                 </div>
             </div>
-
+        @endif
+    </div>
 </x-app-layout>
 <script>
     var parent = document.querySelector(".card");

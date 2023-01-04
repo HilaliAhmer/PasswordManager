@@ -48,8 +48,10 @@ class UserStoreController extends Controller
             ->paginate(10);
         }
          // Arama kodu tamamlandı -- END --
-
-        return view('user.store.list',compact('passwordUserStore','listname'));
+        $status=DB::table('password_types')
+        ->join('stores','password_types.id',"=",'stores.password_type_id')
+        ->where('password_types.slug',$slug)->get();
+        return view('user.store.list',compact('passwordUserStore','listname','status'));
     }
 
     /**
