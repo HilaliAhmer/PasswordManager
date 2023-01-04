@@ -34,9 +34,7 @@
                 <hr class="border border-primary border-1 opacity-50">
                 <div class="table-responsive-md">
                     <table class="table table-hover caption-top">
-                        @foreach ($listname as $lname)
-                            <caption>{{ $lname->type_name }}</caption>
-                        @endforeach
+                        <caption>{{ $listname->type_name }}</caption>
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -78,6 +76,8 @@
                                         </p>
                                     </td>
                                     <td>
+                                        <a href="{{ route('password.clone', $password->id) }}"
+                                            class="btn btn-sm btn-primariy"><i class="fa fa-clone"></i></a>
                                         <a href="{{ route('password.edit', $password->id) }}"
                                             class="btn btn-sm btn-primariy"><i class="fa fa-edit"></i></a>
                                         @role('IT Super Admin')

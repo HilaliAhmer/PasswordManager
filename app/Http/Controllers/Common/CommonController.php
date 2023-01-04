@@ -40,16 +40,15 @@ class CommonController extends Controller
      */
     public function store(CommonPasswordCreateRequest $request)
     {
-        // return $request->post();
         $post_type=$request->password_type_id;
         $post_title=$request->title;
-
         $post_pass=$request->password;
 
         Store::create($request->post());
         $passwordUserStore=Store::where('password_type_id',$post_type)->paginate(10);
-        $listname=PasswordType::where('id',$post_type)->get();
-        return redirect()->route('store.listele',$post_type)->withCompact('passwordUserStore','listname')->withSuccess($post_title.' başarı ile eklendi.');
+        $listname=PasswordType::whereId($post_type)->get();
+        $returnSlug = $listname->first()->slug;
+        return redirect()->route('store.listele',$returnSlug)->withCompact('passwordUserStore','listname')->withSuccess($post_title.' başarı ile eklendi.');
 
         $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=@!%*\-+?&.\/_])[A-Za-z\d=@!%*\-+?&.\/_]{8,}$/';
         $strong_password=preg_match($regex_pass,$post_pass);
@@ -103,12 +102,13 @@ class CommonController extends Controller
         $passwordEdit->url=$request->url;
         $passwordEdit->description=$request->description;
         $passwordEdit->save();
-        // dd($passwordEdit);
-        // Store::where('id',$id)->first()->update($request->except(['_method','_token']));
+
+        $listname=PasswordType::whereId($post_type)->get();
+        $returnSlug = $listname->first()->slug;
         if (session('tasks_url')) {
-            return redirect(session('tasks_url'))->withSuccess($post_title.' başarı ile güncelendi.');
+            return redirect(session('tasks_url'))->withSuccess($post_title.' başarı ile kaydedildi.');
         }
-        return redirect()->route('store.listele' , $post_type)->withSuccess($post_title.' başarı ile güncelendi.');
+        // return redirect()->route('store.listele' , $returnSlug)->withSuccess($post_title.' başarı ile kaydedildi.');
     }
 
     /**
@@ -124,5 +124,13 @@ class CommonController extends Controller
         $passworddestroy->delete();
         return back()->withSuccess($passworddestroy->title.' silme işlemi başarı ile gerçekleşti.');
 
+    }
+    public function clone($id)
+    {
+        $clone=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        $new_clone=$clone->replicate();
+        $new_clone->save();
+
+        return redirect()->route('password.edit',$new_clone);
     }
 }

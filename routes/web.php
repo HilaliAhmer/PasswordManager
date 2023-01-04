@@ -39,5 +39,6 @@ Route::group(['prefix'=>'user'],function () {
 });
 Route::group(['prefix'=>'common'],function () {
     Route::get('password/{id}',[CommonController::class,'destroy'])->whereNumber('id')->name('password.destroy');
+    Route::get('password/{id}/clone',[CommonController::class,'clone'])->whereNumber('id')->name('password.clone');
     Route::resource('password', CommonController::class);
 });

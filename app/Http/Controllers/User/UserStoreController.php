@@ -23,12 +23,7 @@ class UserStoreController extends Controller
     }
     public function listele(Request $request ,$slug)
     {
-        // $passwordUserStore=DB::table('password_types')
-        // ->rightjoin('stores','password_types.id',"=",'stores.password_type_id')
-        // ->where('password_types.slug',$slug)
-        // ->get();
-
-        $listname=PasswordType::whereSlug($slug)->get();
+        $listname=PasswordType::whereSlug($slug)->first() ?? abort(404 , 'Şifre Bulunamadı.');
 
         Session::put('tasks_url',request()->fullUrl());
 
