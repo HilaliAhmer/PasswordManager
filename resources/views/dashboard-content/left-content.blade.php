@@ -29,12 +29,12 @@
                                     @endif
                                     @if (!preg_match('/[=@!%*\-+?&.\/_]/', $type->password))
                                         <li>Şu özel karakterleri içermeli <code>=@!%*-+?&./_</code></li>
-                                    @else
+                                    {{-- @else
                                         <li>
                                             <strong>Sadece</strong> bu karakterleri
                                             içermelidir.
                                             <strong>" <code>=@!%*-+?&./_</code> "</strong>
-                                        </li>
+                                        </li> --}}
                                     @endif
                                 </ol>
                             </div>

@@ -48,7 +48,8 @@ class CommonController extends Controller
         $passwordUserStore=Store::where('password_type_id',$post_type)->paginate(10);
         $listname=PasswordType::whereId($post_type)->get();
         $returnSlug = $listname->first()->slug;
-        return redirect()->route('store.listele',$returnSlug)->withCompact('passwordUserStore','listname')->withSuccess($post_title.' başarı ile eklendi.');
+        notify()->preset('password-create');
+        return redirect()->route('store.listele',$returnSlug)->withCompact('passwordUserStore','listname');
 
         $regex_pass='/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=@!%*\-+?&.\/_])[A-Za-z\d=@!%*\-+?&.\/_]{8,}$/';
         $strong_password=preg_match($regex_pass,$post_pass);
@@ -106,7 +107,8 @@ class CommonController extends Controller
         $listname=PasswordType::whereId($post_type)->get();
         $returnSlug = $listname->first()->slug;
         if (session('tasks_url')) {
-            return redirect(session('tasks_url'))->withSuccess($post_title.' başarı ile kaydedildi.');
+            notify()->preset('password-update');
+            return redirect(session('tasks_url'));
         }
         // return redirect()->route('store.listele' , $returnSlug)->withSuccess($post_title.' başarı ile kaydedildi.');
     }
@@ -122,7 +124,8 @@ class CommonController extends Controller
 
         $passworddestroy=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
         $passworddestroy->delete();
-        return back()->withSuccess($passworddestroy->title.' silme işlemi başarı ile gerçekleşti.');
+        notify()->preset('password-delete');
+        return back();
 
     }
     public function clone($id)
@@ -130,7 +133,35 @@ class CommonController extends Controller
         $clone=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
         $new_clone=$clone->replicate();
         $new_clone->save();
+        return redirect()->route('password.clone_edit',$new_clone);
+    }
+    public function clone_edit($id)
+    {
+        $passwordType=PasswordType::get();
+        $passwordEdit=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        return view('common.store.clone-edit', compact('passwordEdit','passwordType'));
+    }
+    public function clone_update(CommonPasswordUpdateRequest $request, $id)
+    {
+        $post_type=$request->password_type_id;
+        $post_title=$request->title;
 
-        return redirect()->route('password.edit',$new_clone);
+        $passwordEdit=Store::find($id) ?? abort(404 , 'Şifre Bulunamadı.');
+        $passwordEdit->slug=null;
+        $passwordEdit->title=$request->title;
+        $passwordEdit->username=$request->username;
+        $passwordEdit->password=$request->password;
+        $passwordEdit->password_type_id=$request->password_type_id;
+        $passwordEdit->url=$request->url;
+        $passwordEdit->description=$request->description;
+        $passwordEdit->save();
+
+        $listname=PasswordType::whereId($post_type)->get();
+        $returnSlug = $listname->first()->slug;
+        if (session('tasks_url')) {
+            notify()->preset('password-clone');
+            return redirect(session('tasks_url'));
+        }
+        // return redirect()->route('store.listele' , $returnSlug)->withSuccess($post_title.' başarı ile kaydedildi.');
     }
 }

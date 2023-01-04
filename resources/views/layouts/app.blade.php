@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
+    @notifyCss
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @livewireStyles
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -47,6 +47,7 @@
                     </div>
                 @endif
                 {{ $slot }}
+                <x:notify-messages />
             </div>
         </div>
     </div>
@@ -55,6 +56,7 @@
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
+    @notifyJs
 </body>
 
 </html>
